@@ -4,26 +4,35 @@ export default function TextForm(props) {
         // console.log("Uppercase was clicked: " +  text);
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to uppercase!", "success");
     }
+
     const handleLoClick = ()=>{ 
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("Converted to lowercase!", "success");
     }
+
     const handleClearClick = ()=>{ 
         let newText = '';
-        setText(newText)
+        setText(newText);
+        props.showAlert("Text Cleared!", "success");
     }
+
     const handleOnChange = (event)=>{
         // console.log("On change");
-        setText(event.target.value)
+        setText(event.target.value) 
     }
+
     const handleCopy = () => {
         console.log("I am copy");
         var text = document.getElementById("myBox");
         text.select();
         text.setSelectionRange(0, 9999);
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to Clipboard!", "success");
     }
+
     const [text, setText] = useState(''); 
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
